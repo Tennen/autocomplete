@@ -2,8 +2,6 @@ import React, { useRef, useState, useCallback } from 'react';
 import { map } from 'lodash/fp';
 import { arrayOf, string, func } from 'prop-types';
 
-import s from './index.css';
-
 const Autocomplete = ({
   dataSource,
   onFocus,
@@ -15,10 +13,10 @@ const Autocomplete = ({
   const [inputValue, setInputValue] = useState('');
   const _onFocus = useCallback(() => {
     setShowDropDown(true);
-		onFocus();
+    onFocus();
   }, [onFocus]);
   const _onChange = useCallback((e) => {
-    setInputValue(e.target.value)
+    setInputValue(e.target.value);
   }, [onChange]);
   const _onSelect = useCallback(text => () => {
     setInputValue(text);
@@ -26,7 +24,7 @@ const Autocomplete = ({
   }, [onSelect]);
 
   return (
-    <div className={s.Container}>
+    <div style={{ position: 'relative' }}>
       <input
         type="text"
         ref={inputRef}
@@ -34,9 +32,15 @@ const Autocomplete = ({
         onChange={_onChange}
         value={inputValue}
       />
-      <div className={s.DropDown} style={{ display: showDropDown ? 'block' : 'none' }}>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          display: showDropDown ? 'block' : 'none',
+        }}
+      >
         {map(text => (
-          <div onClick={_onSelect(text)}>
+          <div onClick={_onSelect(text)} role="button" tabIndex={0}>
             {text}
           </div>
         ))(dataSource)}
@@ -47,16 +51,16 @@ const Autocomplete = ({
 
 Autocomplete.propTypes = {
   dataSource: arrayOf(string),
-	onFocus: func,
-	onChange: func,
-	onSelect: func,
+  onFocus: func,
+  onChange: func,
+  onSelect: func,
 };
 
 Autocomplete.defaultProps = {
   dataSource: [],
-	onFocus: () => {},
-	onChange: () => {},
-	onSelect: () => {},
+  onFocus: () => {},
+  onChange: () => {},
+  onSelect: () => {},
 };
 
 export default Autocomplete;
