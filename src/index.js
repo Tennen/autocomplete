@@ -25,7 +25,7 @@ const Autocomplete = ({
   }, [onSelect]);
 
   return (
-    <span style={{ position: 'relative' }}>
+    <span style={{ position: 'relative', display: 'inline-block' }}>
       <input
         type="text"
         ref={inputRef}
