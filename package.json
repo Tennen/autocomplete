@@ -1,0 +1,30 @@
+{
+  "name": "tc-autocomplete",
+  "version": "0.0.2",
+  "main": "index.js",
+  "repository": "https://github.com/Tennen/autocomplete.git",
+  "author": "tennen <cell1201@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-react-jsx": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2"
+  },
+  "scripts": {
+    "build": "babel ./src --out-dir ./dist",
+    "lint": "eslint ./src",
+    "prepare": "eslint ./src && babel ./src --out-dir ./dist"
+  }
+}
