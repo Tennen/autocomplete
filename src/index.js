@@ -4,19 +4,20 @@ import { arrayOf, string, func } from 'prop-types';
 
 const Autocomplete = ({
   dataSource,
-  onFocus,
   onChange,
+  onFocus,
   onSelect,
 }) => {
   const inputRef = useRef(null);
   const [showDropDown, setShowDropDown] = useState(false);
   const [inputValue, setInputValue] = useState('');
-  const _onFocus = useCallback(() => {
+  const _onInput = useCallback(() => {
     setShowDropDown(true);
-    onFocus();
-  }, [onFocus]);
+  });
   const _onChange = useCallback((e) => {
-    setInputValue(e.target.value);
+    const targetValue = e.target.value;
+    setInputValue(targetValue);
+    onChange(targetValue);
   }, [onChange]);
   const _onSelect = useCallback(text => () => {
     setInputValue(text);
@@ -24,18 +25,19 @@ const Autocomplete = ({
   }, [onSelect]);
 
   return (
-    <div style={{ position: 'relative' }}>
+    <span style={{ position: 'relative' }}>
       <input
         type="text"
         ref={inputRef}
-        onFocus={_onFocus}
+        onInput={_onInput}
+        onFocus={onFocus}
         onChange={_onChange}
         value={inputValue}
       />
       <div
         style={{
           position: 'absolute',
-          bottom: 0,
+          top: 10,
           display: showDropDown ? 'block' : 'none',
         }}
       >
@@ -45,7 +47,7 @@ const Autocomplete = ({
           </div>
         ))(dataSource)}
       </div>
-    </div>
+    </span>
   );
 };
 

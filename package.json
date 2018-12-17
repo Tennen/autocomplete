@@ -1,6 +1,6 @@
 {
   "name": "tc-autocomplete",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "main": "./dist/index.js",
   "repository": "https://github.com/Tennen/autocomplete.git",
   "author": "tennen <cell1201@gmail.com>",
@@ -26,6 +26,6 @@
   "scripts": {
     "build": "babel ./src --out-dir ./dist",
     "lint": "eslint ./src",
-    "prepare": "eslint ./src && babel ./src --out-dir ./dist && rm -rf node_modules"
+    "prepare": "eslint ./src && babel ./src --out-dir ./dist"
   }
 }
